@@ -47,3 +47,9 @@ Pilih lewat ID, kosongkan bagian yang tidak diubah.
 i. Hapus <img width="451" height="835" alt="Screenshot 2026-10-05 161411" src="https://github.com/user-attachments/assets/2a667777-8039-417a-883b-ff8fde57e43b" />
 <img width="435" height="732" alt="Screenshot 2026-10-05 161520" src="https://github.com/user-attachments/assets/6391b598-ad0c-4117-9f15-89f8fcb3c597" />
 Pilih lewat ID dengan konfirmasi y/n.
+
+4. Penjelasan Nilai Tambah
+Register, batas login 3 kali, dan password tersamar (pwinput).
+Ubah/hapus memakai ID unik, bukan plat.
+KM disimpan sebagai int, tanggal sebagai tuple angka (hari, bulan, tahun), dengan validasi tanggal dan KM tidak boleh di bawah catatan sebelumnya.
+ID, pencatat, dan jadwal servis berikutnya terisi otomatis; kendaraan dan jenis servis tinggal dipilih.
