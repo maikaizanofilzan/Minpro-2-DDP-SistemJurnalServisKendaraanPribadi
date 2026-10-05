@@ -27,18 +27,16 @@ def buat_id_baru():
 
 
 def tambah_bulan(tgl, bulan):
-    """tgl berupa tuple (hari, bulan, tahun). Return tuple baru."""
     total = tgl[1] - 1 + bulan
     tahun = tgl[2] + total // 12
     bulan_baru = total % 12 + 1
     hari = tgl[0]
     if hari > 28:
-        hari = 28  # dibatasi 28 agar tanggal selalu valid di semua bulan
+        hari = 28
     return (hari, bulan_baru, tahun)
 
 
 def hitung_jadwal(data):
-    """Hitung KM & tanggal servis berikutnya dari jarak jenis servis."""
     if data["jarak_km"] is None or data["jarak_bulan"] is None:
         data["km_berikutnya"] = None
         data["tanggal_berikutnya"] = None
@@ -71,7 +69,6 @@ def isi_data_awal():
 
 
 def format_tanggal(tgl):
-    """tgl berupa tuple (hari, bulan, tahun) -> teks DD-MM-YYYY."""
     hari = str(tgl[0])
     bulan = str(tgl[1])
     if tgl[0] < 10:
@@ -96,12 +93,7 @@ def km_terakhir(kendaraan):
             km_tertinggi = data["km"]
     return km_tertinggi
 
-
-# =====================================================
-# FUNCTION VALIDASI INPUT
-# =====================================================
 def ke_angka(teks):
-    """Ubah teks jadi angka bulat. Return None kalau bukan angka."""
     try:
         return int(teks)
     except ValueError:
@@ -109,7 +101,6 @@ def ke_angka(teks):
 
 
 def input_teks(label, boleh_kosong=False):
-    """Minta teks. Jika boleh_kosong=True, Enter kosong mengembalikan None."""
     while True:
         nilai = input(label).strip()
         if nilai == "":
@@ -128,9 +119,7 @@ def input_password(label):
         else:
             return nilai
 
-
 def input_km(label, batas_bawah=1, boleh_kosong=False):
-    """Return int. Tidak boleh huruf, 0/negatif, atau kurang dari 'batas_bawah'."""
     if batas_bawah < 1:
         batas_bawah = 1
     while True:
@@ -149,7 +138,6 @@ def input_km(label, batas_bawah=1, boleh_kosong=False):
 
 
 def cek_tanggal(teks):
-    """Cek format DD-MM-YYYY & apakah tanggalnya benar-benar ada. Return tuple (hari, bulan, tahun) atau None."""
     if len(teks) != 10 or teks[2] != "-" or teks[5] != "-":
         return None
     hari = ke_angka(teks[0:2])
@@ -161,14 +149,13 @@ def cek_tanggal(teks):
         return None
     jumlah_hari = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
     if tahun % 4 == 0 and (tahun % 100 != 0 or tahun % 400 == 0):
-        jumlah_hari[1] = 29  # tahun kabisat
+        jumlah_hari[1] = 29 
     if hari > jumlah_hari[bulan - 1]:
         return None
     return (hari, bulan, tahun)
 
 
 def input_tanggal(label, boleh_kosong=False):
-    """Return tuple (hari, bulan, tahun). Tidak boleh kosong / format salah / tanggal tidak ada."""
     while True:
         nilai = input(label).strip()
         if nilai == "":
@@ -184,7 +171,6 @@ def input_tanggal(label, boleh_kosong=False):
 
 
 def pilih_kendaraan():
-    """Pilih dari daftar kendaraan yang sudah ada, atau 0 untuk kendaraan baru."""
     while True:
         daftar = daftar_kendaraan()
         print("\nPilih kendaraan:")
@@ -204,7 +190,6 @@ def pilih_kendaraan():
 
 
 def pilih_jenis(boleh_kosong=False):
-    """Return dict jenis servis (nama + jarak servis) atau None jika dikosongkan."""
     while True:
         print("\nPilih jenis servis:")
         for no, info in JENIS_SERVIS.items():
@@ -238,7 +223,6 @@ def register():
 
 
 def login():
-    """Return (username, role) jika berhasil, None jika gagal 3x."""
     print("\n--- LOGIN ---")
     percobaan = 0
     while percobaan < 3:
